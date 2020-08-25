@@ -4,9 +4,9 @@
 #define ADV_TO_RAD 0.00568
 #define PULSE_TO_METER 0.000501
 #define KP 0.025
-#define KI 0
-#define KD 0
-#define T 0.002
+#define KI 0.1
+#define KD 0.006
+#define T 0.001
 
 BusOut led(LED1, LED2, LED3, LED4);	//set LED
 AnalogIn pen(AD7);									//Potentiometer Input Output
@@ -25,29 +25,38 @@ QEI qei_right(GPIO3, GPIO4, NC, 48, QEI::X4_ENCODING);
 //*************** car speed control ***************//
 
 int adv;												// Now AD
-int goal_pen_val = 485;							// goal AD
+int goal_pen_val = 485;					// goal AD
 double speed, last_speed;						// car speed, car last speed
 int pen_diff;										// difference
+float TARGET_THETA;			//goal theta
+float theta;					//now theta
+float e;					
+double ed;
+float	ei;
+float duty;
 
 void pen_control_handler(){
 	
 	float e0 = 0;
 	adv = pen.read_u16()>>6;   
-	float theta = adv * ADV_TO_RAD;
-	float TARGET_THETA = goal_pen_val * ADV_TO_RAD;
-	float e = TARGET_THETA - theta;
-	float ed = (e - e0) / T;
-	float ei = ei + e * T;
-		e0 = e; 
+	theta = adv * ADV_TO_RAD;
+	TARGET_THETA = goal_pen_val * ADV_TO_RAD;
+	
+	e = TARGET_THETA - theta;
+	ed = (e - e0) / T;
+	ei += e * T;
+	
+	e0 = e; 
 	
 		if(ei > 10000) ei = 10000;
-		if(ei > -10000) ei = -10000;
+		if(ei <	-10000) ei = -10000;
 
 //  Calculate PID control
 	float duty_ratio = ((e * KP + ei * KI + ed * KD)*100);
 	
 //  Introduce x, dx, theta, dtheta
-	int left = qei_left.getPulses();
+
+	/*	int left = qei_left.getPulses();
 	int right = qei_right.getPulses();
 	
 	float x0 = 0;
@@ -57,9 +66,12 @@ void pen_control_handler(){
 		theta = e;
 	float dtheta = ed;
 	float theta0 = theta;
+*/
 
 //  Calculate state feedback control
 //	duty_ratio = -(int)((x*K1 + dx*K2 + theta*K3 + dtheta*K4)*100);
+	
+	duty = duty_ratio;
 	
 	if (duty_ratio > 100) duty_ratio = 100;
 	else if (duty_ratio < -100) duty_ratio = -100;
@@ -83,8 +95,11 @@ int main(){
 	wait(1.0);		//wait 1 second
 	
 	while(1) {		//loop
-		printf("adv:%d speed:%2.2f \r\n", adv ,speed);
-		printf("goal:%d", goal_pen_val);
+	//printf("adv:%d speed:%2.2f \r\n", adv ,speed);
+	//	printf("goal:%lf, theta:%lf",TARGET_THETA, theta);
+		printf("e:%f\r\n, ei:%f\r\n, ed:%lf \r\n",e, ei, ed);
+		printf("duty:%f\r\n", duty);
+		
 		wait(0.08);
 	}
 }
