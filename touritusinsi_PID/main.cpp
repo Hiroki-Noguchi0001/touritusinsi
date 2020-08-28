@@ -3,19 +3,12 @@
 #include "QEI.h"
 #define ADV_TO_RAD 0.00568
 #define PULSE_TO_METER 0.000501
-<<<<<<< Updated upstream
-#define KP 0.025
+#define KP 0.5
 #define KI 0
-#define KD 0
-#define T 0.002
-=======
-#define KP 0.02
-#define KI 0.0
 #define KD 0
 
 #define T 0.002
 //#define LPF(x, x0, r)	((r) * (x - x0))
->>>>>>> Stashed changes
 
 BusOut led(LED1, LED2, LED3, LED4);	//set LED
 AnalogIn pen(AD7);									//Potentiometer Input Output
@@ -33,14 +26,6 @@ BusIn in(GPIO1, GPIO2, GPIO3, GPIO4);
 QEI qei_left(GPIO1, GPIO2, NC, 48, QEI::X4_ENCODING);
 QEI qei_right(GPIO3, GPIO4, NC, 48, QEI::X4_ENCODING);
 
-<<<<<<< Updated upstream
-//*************** car speed control ***************//
-
-int adv;												// Now AD
-int goal_pen_val = 485;							// goal AD
-double speed, last_speed;						// car speed, car last speed
-int pen_diff;										// difference
-=======
 //*************** car speed control ***************//
 int adv;												// Now AD
 int goal_pen_val = 488;					// goal AD
@@ -56,7 +41,6 @@ float duty_ratio;
 int stop = 1;
 //double filter;
 //double last_LPF = 0;
->>>>>>> Stashed changes
 
 void pen_control_handler(){
 	adv = pen.read_u16()>>6;
@@ -67,20 +51,6 @@ void pen_control_handler(){
 	//last_LPF = filter;
 	//--------------------------------------
 	
-<<<<<<< Updated upstream
-	float e0 = 0;
-	adv = pen.read_u16()>>6;   
-	float theta = adv * ADV_TO_RAD;
-	float TARGET_THETA = goal_pen_val * ADV_TO_RAD;
-	float e = TARGET_THETA - theta;
-	float ed = (e - e0) / T;
-	float ei = ei + e * T;
-		e0 = e; 
-	
-		if(ei > 10000) ei = 10000;
-		if(ei > -10000) ei = -10000;
-
-=======
 //	theta = adv * ADV_TO_RAD;
 	//TARGET_THETA = goal_pen_val * ADV_TO_RAD;
 	e0 = e;
@@ -90,7 +60,6 @@ void pen_control_handler(){
 		if(ei > 1000) ei = 1000;
 		if(ei <	-1000) ei = -1000;
 	
->>>>>>> Stashed changes
 //  Calculate PID control
 	 duty_ratio = ((e * KP + ei * KI + ed * KD)*100); 
 		
@@ -99,15 +68,10 @@ void pen_control_handler(){
 		}
 		
 	
-<<<<<<< Updated upstream
-//  Introduce x, dx, theta, dtheta
-	int left = qei_left.getPulses();
-=======
 
 
 	//  Introduce x, dx, theta, dtheta
 	/*	int left = qei_left.getPulses();
->>>>>>> Stashed changes
 	int right = qei_right.getPulses();
 	float x0 = 0;
 	float x = (left + right) / 2 * PULSE_TO_METER;
@@ -116,15 +80,12 @@ void pen_control_handler(){
 		theta = e;
 	float dtheta = ed;
 	float theta0 = theta;
+*/
 
 //  Calculate state feedback control
 //	duty_ratio = -(int)((x*K1 + dx*K2 + theta*K3 + dtheta*K4)*100);
-<<<<<<< Updated upstream
-	
-=======
 
 
->>>>>>> Stashed changes
 	if (duty_ratio > 100) duty_ratio = 100;
 	else if (duty_ratio < -100) duty_ratio = -100;
 		
@@ -146,17 +107,12 @@ int main(){
 	wait(1.0);		//wait 1 second
 	
 	while(1) {		//loop
-<<<<<<< Updated upstream
-		printf("adv:%d speed:%2.2f \r\n", adv ,speed);
-		printf("goal:%d", goal_pen_val);
-=======
 	printf("adv:%d speed:%2.2f \r\n", adv ,speed);
 	//	printf("low_filter:%lf",filter);
 	//	printf("goal:%lf, theta:%lf",TARGET_THETA, theta);
 	//	printf("e:%f\r\n, ei:%f\r\n, ed:%lf \r\n",e, ei, ed);
 		printf("duty:%f\r\n", duty_ratio);
 		//printf("e0 : %lf\r\n", e0);
->>>>>>> Stashed changes
 		wait(0.08);
 	}
 }

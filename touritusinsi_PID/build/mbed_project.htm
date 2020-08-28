@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\build\mbed_project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\build\mbed_project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Aug 28 18:22:26 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Aug 28 20:31:54 2020
 <BR><P>
 <H3>Maximum Stack Usage =          0 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -320,11 +320,12 @@ Global Symbols
 <LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pen_control_handler()
 </UL>
 
-<P><STRONG><a name="[2e]"></a>pen_control_handler()</STRONG> (Thumb, 476 bytes, Stack size 0 bytes, main.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor::operator =(float)
+<P><STRONG><a name="[2e]"></a>pen_control_handler()</STRONG> (Thumb, 482 bytes, Stack size 0 bytes, main.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor::operator =(float)
 <LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analogin_read_u16
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
@@ -333,17 +334,17 @@ Global Symbols
 <LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfcmple
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>
-<P><STRONG><a name="[75]"></a>$Super$$main</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[76]"></a>$Super$$main</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
-<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor::setMaxRatio(float)
+<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor::setMaxRatio(float)
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::setup(unsigned)
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::BusOut::operator =(int)
 <LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::FunctionPointer::attach(void(*)())
@@ -388,11 +389,11 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::DigitalOut::operator =(int)
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SoftwarePWM::SetPosition(int)
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor::operator =(float)
+<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor::operator =(float)
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor::Motor(PinName, PinName, PinName)
 </UL>
 
@@ -400,7 +401,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SoftwarePWM::Enable(int, int)
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 </UL>
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor::Motor(PinName, PinName, PinName)
 </UL>
@@ -414,8 +415,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__sti___8_main_cpp_led
 </UL>
 
-<P><STRONG><a name="[76]"></a>Motor::setMaxRatio(float)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motor.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<P><STRONG><a name="[77]"></a>Motor::setMaxRatio(float)</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, motor.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[86]"></a>QEI::QEI(PinName, PinName, PinName, int, QEI::Encoding)</STRONG> (Thumb, 194 bytes, Stack size 0 bytes, qei.o(.text))
@@ -507,11 +508,12 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
 
-<P><STRONG><a name="[77]"></a>__aeabi_fmul</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, fmul.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<P><STRONG><a name="[72]"></a>__aeabi_fmul</STRONG> (Thumb, 122 bytes, Stack size 0 bytes, fmul.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor::period(float)
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;wait
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor::write(float)
+<LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pen_control_handler()
 </UL>
 
 <P><STRONG><a name="[6d]"></a>__aeabi_dadd</STRONG> (Thumb, 328 bytes, Stack size 0 bytes, dadd.o(.text))
@@ -562,19 +564,19 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[78]"></a>__aeabi_f2uiz</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, ffixui.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[6a]"></a>__aeabi_f2d</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, f2d.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 <LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pen_control_handler()
 </UL>
 
-<P><STRONG><a name="[73]"></a>__aeabi_cdcmple</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, cdcmple.o(.text))
+<P><STRONG><a name="[74]"></a>__aeabi_cdcmple</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, cdcmple.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pen_control_handler()
 </UL>
 
-<P><STRONG><a name="[72]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, cdrcmple.o(.text))
+<P><STRONG><a name="[73]"></a>__aeabi_cdrcmple</STRONG> (Thumb, 38 bytes, Stack size 0 bytes, cdrcmple.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pen_control_handler()
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
@@ -733,7 +735,7 @@ Global Symbols
 <P><STRONG><a name="[2b]"></a>main</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, retarget.o(i.$Sub$$main))
 <BR><BR>[Calls]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_sdk_init
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed_main
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
@@ -857,7 +859,7 @@ Global Symbols
 
 <P><STRONG><a name="[79]"></a>mbed::FunctionPointer::attach(void(*)())</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, FunctionPointer.o(i._ZN4mbed15FunctionPointer6attachEPFvvE))
 <BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::~Ticker()
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::Ticker::detach()
 </UL>
 
@@ -907,7 +909,7 @@ Global Symbols
 <P><STRONG><a name="[7b]"></a>mbed::BusOut::operator =(int)</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, BusOut.o(i._ZN4mbed6BusOutaSEi))
 <BR><BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::BusOut::write(int)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[83]"></a>mbed::Serial::Serial(PinName, PinName, const char*)</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, Serial.o(i._ZN4mbed6SerialC1E7PinNameS1_PKc))
@@ -957,7 +959,7 @@ Global Symbols
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::remove()
 <LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mbed::TimerEvent::insert(unsigned)
 </UL>
-<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;void mbed::Ticker::attach_us&lang;SoftwarePWM&rang;(T1*, void(T1::*)(), unsigned)
 </UL>
 
@@ -1069,7 +1071,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>
-<P><STRONG><a name="[74]"></a>Motor::operator =(float)</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, main.o(i._ZN5MotoraSEf))
+<P><STRONG><a name="[75]"></a>Motor::operator =(float)</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, main.o(i._ZN5MotoraSEf))
 <BR><BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Motor::write(float)
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pen_control_handler()
@@ -1108,7 +1110,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[7d]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, printfa.o(i.__0printf))
-<BR><BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR><BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[e1]"></a>__0sprintf</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, printfa.o(i.__0sprintf), UNUSED)
@@ -1490,9 +1492,9 @@ Global Symbols
 <P><STRONG><a name="[7c]"></a>wait</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, wait_api.o(i.wait))
 <BR><BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;us_ticker_read
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
-<LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 </UL>
-<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
+<BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;$Super$$main
 </UL>
 
 <P><STRONG><a name="[fc]"></a>wait_ms</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, wait_api.o(i.wait_ms))
@@ -1579,7 +1581,7 @@ Local Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
+<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 </UL>
