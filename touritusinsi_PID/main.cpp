@@ -3,12 +3,10 @@
 #include "QEI.h"
 #define ADV_TO_RAD 0.00568
 #define PULSE_TO_METER 0.000501
-#define KP 0.5
-#define KI 0
-#define KD 0
-
-#define T 0.002
-//#define LPF(x, x0, r)	((r) * (x - x0))
+#define KP 0.18 // 0.34
+#define KI 0.05
+#define KD 0.0
+#define T 0.001
 
 BusOut led(LED1, LED2, LED3, LED4);	//set LED
 AnalogIn pen(AD7);									//Potentiometer Input Output
@@ -28,7 +26,7 @@ QEI qei_right(GPIO3, GPIO4, NC, 48, QEI::X4_ENCODING);
 
 //*************** car speed control ***************//
 int adv;												// Now AD
-int goal_pen_val = 488;					// goal AD
+int goal_pen_val = 120;					// goal AD
 double speed, last_speed;						// car speed, car last speed
 int pen_diff;										// difference
 float TARGET_THETA;			//goal theta
@@ -38,14 +36,11 @@ float e0 = 0;
 double ed;
 float	ei;
 float duty_ratio;
-int stop = 1;
-//double filter;
-//double last_LPF = 0;
 
 void pen_control_handler(){
 	adv = pen.read_u16()>>6;
-	adv /= 4;
-	adv *= 4;
+	adv /= 2;
+	adv *= 2;
 	//--------------------------------------
 	//filter = LPF(adv, last_LPF, 0.4);
 	//last_LPF = filter;
@@ -57,13 +52,14 @@ void pen_control_handler(){
 	e = goal_pen_val - adv;
 	ei += (e + e0) / 2.0 * T;
 	ed = (e - e0) / T;
+	
 		if(ei > 1000) ei = 1000;
 		if(ei <	-1000) ei = -1000;
 	
 //  Calculate PID control
 	 duty_ratio = ((e * KP + ei * KI + ed * KD)*100); 
 		
-		if(adv <= 300 || adv >= 564){
+		if(adv <= 0 || adv >= 190){
 			duty_ratio = 0;
 		}
 		
@@ -86,8 +82,9 @@ void pen_control_handler(){
 //	duty_ratio = -(int)((x*K1 + dx*K2 + theta*K3 + dtheta*K4)*100);
 
 
-	if (duty_ratio > 100) duty_ratio = 100;
-	else if (duty_ratio < -100) duty_ratio = -100;
+	//if (duty_ratio > 100) duty_ratio = 100;
+	//else if (duty_ratio < -100) duty_ratio = -100;
+		duty_ratio = duty_ratio / 100;
 		
 		speed = duty_ratio;
 			
@@ -110,8 +107,8 @@ int main(){
 	printf("adv:%d speed:%2.2f \r\n", adv ,speed);
 	//	printf("low_filter:%lf",filter);
 	//	printf("goal:%lf, theta:%lf",TARGET_THETA, theta);
-	//	printf("e:%f\r\n, ei:%f\r\n, ed:%lf \r\n",e, ei, ed);
-		printf("duty:%f\r\n", duty_ratio);
+			printf("e:%f\r\n, ei:%f\r\n, ed:%lf \r\n",e, ei, ed);
+		//printf("duty:%f\r\n", duty_ratio);
 		//printf("e0 : %lf\r\n", e0);
 		wait(0.08);
 	}
