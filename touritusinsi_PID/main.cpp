@@ -10,6 +10,7 @@
 // battery 8.27V (success)
 
 BusOut led(LED1, LED2, LED3, LED4);	//set LED
+BusIn sw1(SW1), sw2(SW2);	//Switch
 AnalogIn pen(AD7);									//Potentiometer Input Output
 Ticker pen_control;								//speed control time
 Serial pc(USBTX, USBRX);						//serial 
@@ -100,17 +101,23 @@ int main(){
 	//motor Max speed object
 	motor_left.setMaxRatio(0.6);
 	motor_right.setMaxRatio(0.6);
-	pen_control.attach(&pen_control_handler, 0.001);		//speed control time
-	led = 1;		//set LED
+	pen_control.attach(&pen_control_handler, 0.001);	//speed control time
+	led = 1;	//set LED
+	sw1.mode(PullUp);
+	sw2.mode(PullUp);
 	wait(1.0);		//wait 1 second
 	
 	while(1) {		//loop
-	printf("adv:%d speed:%2.2f \r\n", adv ,speed);
+		if(!sw1)  goal_pen_val += 1;
+		if(!sw2)  goal_pen_val -= 1;	
+		
+	//  printf("adv:%d speed:%2.2f \r\n", adv ,speed);
 	//	printf("low_filter:%lf",filter);
 	//	printf("goal:%lf, theta:%lf",TARGET_THETA, theta);
-			printf("e:%f\r\n, ei:%f\r\n, ed:%lf \r\n",e, ei, ed);
-		printf("duty:%f\r\n", duty_ratio);
+	//	printf("e:%f\r\n, ei:%f\r\n, ed:%lf \r\n",e, ei, ed);
+	//	printf("duty:%f\r\n", duty_ratio);
 		//printf("e0 : %lf\r\n", e0);
+			printf("goal_pen: %d\r\n", goal_pen_val);
 		wait(0.08);
 	}
 }
