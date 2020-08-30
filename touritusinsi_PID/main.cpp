@@ -3,10 +3,11 @@
 #include "QEI.h"
 #define ADV_TO_RAD 0.00568
 #define PULSE_TO_METER 0.000501
-#define KP 0.18 // 0.34
-#define KI 0.05
-#define KD 0.0
+#define KP 0.045
+#define KI 0.5
+#define KD 0.0022
 #define T 0.001
+// battery 8.27V (success)
 
 BusOut led(LED1, LED2, LED3, LED4);	//set LED
 AnalogIn pen(AD7);									//Potentiometer Input Output
@@ -26,7 +27,7 @@ QEI qei_right(GPIO3, GPIO4, NC, 48, QEI::X4_ENCODING);
 
 //*************** car speed control ***************//
 int adv;												// Now AD
-int goal_pen_val = 120;					// goal AD
+int goal_pen_val = 115;					// goal AD
 double speed, last_speed;						// car speed, car last speed
 int pen_diff;										// difference
 float TARGET_THETA;			//goal theta
@@ -57,7 +58,7 @@ void pen_control_handler(){
 		if(ei <	-1000) ei = -1000;
 	
 //  Calculate PID control
-	 duty_ratio = ((e * KP + ei * KI + ed * KD)*100); 
+	 duty_ratio = ((e * KP + ei * KI + ed * KD) *100); 
 		
 		if(adv <= 0 || adv >= 190){
 			duty_ratio = 0;
@@ -108,7 +109,7 @@ int main(){
 	//	printf("low_filter:%lf",filter);
 	//	printf("goal:%lf, theta:%lf",TARGET_THETA, theta);
 			printf("e:%f\r\n, ei:%f\r\n, ed:%lf \r\n",e, ei, ed);
-		//printf("duty:%f\r\n", duty_ratio);
+		printf("duty:%f\r\n", duty_ratio);
 		//printf("e0 : %lf\r\n", e0);
 		wait(0.08);
 	}
